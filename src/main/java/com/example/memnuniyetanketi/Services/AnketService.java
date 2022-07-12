@@ -18,8 +18,8 @@ public class AnketService {
         return anketRepository.findAll();
     }
 
-    public void saveAnket(Anket anket) {
-        anketRepository.save(anket);
+    public Anket createAnket(Anket anket) {
+        return anketRepository.save(anket);
     }
 
     public Anket getAnket(Long id) {
