@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
-
+@CrossOrigin(origins = "*")
 @RestController
 public class AnketController {
 
@@ -29,7 +29,7 @@ public class AnketController {
     }
 
     //@RequestMapping(value = "/anket/create", method = RequestMethod.POST)
-    @PostMapping(value = "/anket/create")
+    @PostMapping(value = "/api/anket/create")
     public Anket createAnket(@Valid @RequestBody Anket anket) {
         //return anket;
         Anket Yenianket = anketService.createAnket(anket);
@@ -39,7 +39,7 @@ public class AnketController {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiError handleValidationException (MethodArgumentNotValidException ex) {
-        ApiError error = new ApiError(400, "Validation error","/anket/create");
+        ApiError error = new ApiError(400, "Validation error","/api/anket/create");
         Map<String, String> ValidationErrors = new HashMap<>();
         for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {
             ValidationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
