@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @CrossOrigin(origins = "*")
@@ -35,6 +36,42 @@ public class AnketController {
         Anket Yenianket = anketService.createAnket(anket);
         return Yenianket;
     }
+
+    @GetMapping(value = "/api/anket/list")
+    public List<Anket> listAnket() {
+        return anketService.listAnket();
+    }
+
+    @GetMapping(value = "/api/anket/{id}")
+    public Anket getAnket(@PathVariable Long id) {
+        return anketService.getAnket(id);
+    }
+
+    @PutMapping(value = "/api/anket/{id}")
+    public Anket updateAnket(@PathVariable Long id, @Valid @RequestBody Anket anket) {
+        Anket yenianket = anketService.getAnket(id);
+
+        yenianket.setId(id);
+        yenianket.setName(anket.getName());
+        yenianket.setSurname(anket.getSurname());
+        yenianket.setEmail(anket.getEmail());
+        yenianket.setMessage(anket.getMessage());
+
+
+        return anketService.updateAnket(yenianket);
+    }
+
+    @DeleteMapping(value = "/api/anket/{id}")
+    public void deleteAnket(@PathVariable Long id) {
+        anketService.deleteAnket(id);
+    }
+
+    @GetMapping(value = "/api/anket/search/")
+    public List<Anket> searchAnket(@RequestParam(required=false, name = "search" ,defaultValue="unknown") String search) {
+        List<Anket> anketList = anketService.searchAnket(search);
+        return anketList;
+    }
+
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

@@ -30,9 +30,12 @@ public class AnketService {
         anketRepository.deleteById(id);
     }
 
-    public void updateAnket(Anket anket) {
-        anketRepository.save(anket);
+    public Anket updateAnket( Anket anket) {
+        return anketRepository.save(anket);
     }
 
+    public List<Anket> searchAnket(String name){
+        return anketRepository.findByNameContainingIgnoreCase(name);
+    }
 
 }
