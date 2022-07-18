@@ -2,6 +2,7 @@ import './App.css';
 import CreateAnket from './pages/CreateAnket';
 import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer} from "react-toastify"
+import ListAnket from './pages/ListAnket';
 
 
 
@@ -19,7 +20,7 @@ function App() {
         pauseOnHover
         theme='colored'
        />
-     <CreateAnket />
+       <ListAnket/>
     </div>
   );
 }

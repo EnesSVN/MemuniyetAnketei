@@ -18,7 +18,7 @@ function CreateAnket() {
             toast.success('Anket kuruldu')
             reset()
         } catch (error) {
-            toast.error('Hata ulustu')
+            toast.error('Hata olustu')
             reset()
 
         }
